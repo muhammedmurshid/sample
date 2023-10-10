@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_emp,access_emp,model_employee_module_form,,1,1,1,1
+acces_emp,access_emp,model_one_many,,1,1,1,1

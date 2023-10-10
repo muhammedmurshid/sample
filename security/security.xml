@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="module_joining_form">
+        <field name="name">Employee Joining Form</field>
+        <field name="sequence">21</field>
+        <field name="visible" eval="0"/>
+    </record>
+    <record id="joining_form_for_hr" model="res.groups">
+        <field name="name">HR Manager</field>
+        <field name="category_id" ref="module_joining_form"/>
+    </record>
+    <record id="joining_form_for_technical_officer" model="res.groups">
+        <field name="name">Technical Officer</field>
+        <field name="category_id" ref="module_joining_form"/>
+    </record>
+</odoo>

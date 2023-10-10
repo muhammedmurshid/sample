@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="logic_employee_datas_custom" model="ir.ui.view">
+        <field name="name">logic.staff.details</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <notebook>
+                <page string="Staff Information" name="staff_information">
+                    <group>
+                        <group>
+                            <field name="pf_uan_number" placeholder="If Any In Previous Employment"/>
+                            <field name="esi_ip_number" placeholder="If Any In Previous Employment"/>
+                            <field name="blood_group"/>
+                            <field name="home_address"/>
+                        </group>
+                        <group string="Bank Details" name="bank_details">
+                            <field name="bank_name"/>
+                            <field name="bank_acc_number"/>
+                            <field name="branch_bank"/>
+                            <field name="ifsc_code"/>
+                            <field name="micr_code"/>
+                            <field name="name_as_per_bank"/>
+
+                        </group>
+                        <group string="Aadhaar And Pan Card Details" name="bank_details">
+                            <field name="aadhar_card_number"/>
+                            <field name="name_as_per_aadhar"/>
+                            <field name="pan_card_number"/>
+                            <field name="name_as_per_pan"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+            <xpath expr="//field[@name='spouse_birthdate']" position="after">
+                <field name="children_name" attrs="{'invisible': [('marital', '!=', 'married')]}"/>
+                <field name="children_birthdate" attrs="{'invisible': [('marital', '!=', 'married')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="custom_sale_order" model="ir.ui.view">
+        <field name="name">Parent readonly o2m field</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="custom"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

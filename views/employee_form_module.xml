@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="employee_module_tree_view" model="ir.ui.view">
+        <field name="name">Employees</field>
+        <field name="model">employee.module.form</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_name"/>
+                <field name="designation"/>
+                <field name="mail_id"/>
+                <field name="phone_number"/>
+                <field name="state"/>
+            </tree>
+
+        </field>
+    </record>
+    <record id="employee_module_form_view" model="ir.ui.view">
+        <field name="name">Employee Form</field>
+        <field name="model">employee.module.form</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Employee Form">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirm,done,cancel"/>
+                    <button name="confirm_employee_request" string="Confirm" class="btn-primary" type="object"
+                            states="draft"
+                            groups="logic_employee_form.joining_form_for_hr"/>
+                    <button name="cancel_employee_request" string="Cancel" class="btn-primary" type="object"
+                            states="draft"
+                            groups="logic_employee_form.joining_form_for_hr"/>
+                    <button name="confirm_technical_officer" string="Done" class="btn-primary" type="object"
+                            states="confirm"
+                            groups="logic_employee_form.joining_form_for_technical_officer"/>
+                    <button name="return_employee_request" string="Return" class="btn-primary" type="object"
+                            states="confirm"
+                            groups="logic_employee_form.joining_form_for_technical_officer"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_name"/>
+                            <field name="designation"/>
+                            <field name="phone_number"/>
+                            <field name="office_phone"/>
+                            <field name="mail_id"/>
+                            <field name="address"/>
+                            <field name="father_name"/>
+                            <field name="father_dob"/>
+                         
+                            <field name="mother_name"/>
+                            <field name="mother_dob"/>
+
+
+                        </group>
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="date_of_joining"/>
+
+                        </group>
+                        <group>
+                            <field name="upload_cv"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Bank Details">
+                            <group>
+                                <group>
+                                    <field name="bank_name"/>
+                                    <field name="bank_acc_number"/>
+                                    <field name="branch_bank"/>
+                                    <field name="ifsc_code"/>
+                                    <field name="micr_code"/>
+                                    <field name="name_as_per_bank"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Aadhar And Pan Card Details">
+                            <group>
+                                <group>
+                                    <field name="aadhar_card_number"/>
+                                    <field name="name_as_per_aadhar"/>
+                                    <field name="pan_card_number"/>
+                                    <field name="name_as_per_pan"/>
+
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Private Information">
+                            <group>
+                                <group>
+                                    <field name="marital_stats"/>
+                                    <field name="spouse_name"
+                                           attrs="{'invisible': [('marital_stats', '!=', 'married')]}"/>
+                                    <field name="spouse_dob"
+                                           attrs="{'invisible': [('marital_stats', '!=', 'married')]}"/>
+                                    <field name="name_of_children"
+                                           attrs="{'invisible': [('marital_stats', '!=', 'married')]}"/>
+                                    <field name="blood_group"/>
+                                    <field name="pf_uan_number"/>
+                                    <field name="esi_ip_number"/>
+
+
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    <record id="seq_students_refund" model="ir.sequence">-->
+    <!--        <field name="name">Students Refund</field>-->
+    <!--        <field name="code">student.refund</field>-->
+    <!--        <field name="active">TRUE</field>-->
+    <!--        <field name="prefix">RF</field>-->
+    <!--        <field name="padding">2</field>-->
+    <!--        <field name="number_next">1</field>-->
+    <!--        <field name="number_increment">1</field>-->
+    <!--    </record>-->
+    <record model="ir.actions.act_window" id="employee_module_action">
+        <field name="name">Employee</field>
+        <field name="res_model">employee.module.form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Joining Form" id="logic_employees" action="employee_module_action"
+              web_icon="logic_employee_form/static/description/icon.png"
+              sequence="4"/>
+</odoo>
